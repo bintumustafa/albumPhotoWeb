@@ -13,14 +13,15 @@ public class Loader{
 		//charger dans un rep temp du server appli pour �viter les va et vient
 		//lesPhotosconcern�es ={user's photos, photos publiques, photos qui lui sont partag�es}
 		boolean loaded = false;
-		Photo [] lesPhotosConcernees = (Photo[]) connectedUser.downloadImages(); //on suppose qu'il existe une m�thode qui permet de recup�rer les chemins abs img de la bd
-															//si en une structure autre que tab comme list ou autre on changera
-		int len = lesPhotosConcernees.length;
-		if (len > 0){
-			for (int i = 0; i < len; i++ ){//pour chaque img on cr�e un fichier dans le rep temp
-				String imgtempPath = lesPhotosConcernees[i].getPath(); 
-				//string imgtempname = "img"+Integer.toString(i);;
-				File f = File.createTempFile("tmp", null, new File(imgtempPath));
+		List <PhotoDao> lesPhotosConcernees = new ArrayList <PhotoDao>;
+		lesPhotosConcernees = connectedUser.downloadImages(); //on suppose qu'il existe une m�thode qui permet de recup�rer les chemins abs img de la bd
+															 
+		int siz = lesPhotosConcernees.size();
+		if (siz > 0){
+			for (int i = 0; i < siz; i++ ){//pour chaque img on cr�e un fichier dans le rep temp
+				String imgtempPath = lesPhotosConcernees.get(i).getPath(); 
+				String imgTemp = lesPhotosConcernees.get(i).getTitle();
+				File f = File.createTempFile(imgTemp, null, new File(imgtempPath));
 				f.deleteOnExit();
 			}
 			loaded = true;
@@ -32,9 +33,9 @@ public class Loader{
 	
 	public boolean unload(){
 		boolean unloaded = false;
-		File[] lesPhotosConcernees = new File("/Users/aida/Desktop/sbs/apache-tomcat-9.0.55/temp").listFiles();
+		File [] lesPhotosConcernees = new File("/Users/aida/Desktop/sbs/apache-tomcat-9.0.55/temp").listFiles();
 		for (File file : lesPhotosConcernees) {
-			file.deleteOnExit();
+			file.delete();
 		}
 		return unloaded;
 		
