@@ -1,6 +1,6 @@
 package servlets;
 
-import pojo.User; //ï¿½ changer selon le nom du package et de la classe que cheikh aura mis
+import dao.User; //ï¿½ changer selon le nom du package et de la classe que cheikh aura mis
 //import dao.Authentification; //idem
 import service.Loader; // ï¿½ implï¿½menter dans le package service
 import service.SessionService;
