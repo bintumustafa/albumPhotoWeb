@@ -12,7 +12,7 @@ public class PhotoCrud {
 		boolean created = p.add(title, pth, nomAlb); //les img sont stock�es dans un doc du projet et les chemins abs dans la bd
 		boolean added = add(img);//methode � impl�menter pour mettre l'img dans le doc mesImages
 		if (created && added)
-			message = "La photo "+title + "a �t� cr��";
+			message = "La photo "+title + "a �t� cr��e";
 		return message;
 	}
 	
@@ -36,7 +36,7 @@ public class PhotoCrud {
 		DaoPhoto dp = new DaoPhoto();
 		boolean deleted = dp.delete(p);
 		if (deleted)
-			message = "La photo a �t� supprim�";		
+			message = "La photo a �t� supprim�e";		
 		return message;
 
 	}
