@@ -32,7 +32,7 @@ public class AlbumCrud {
 	public String deleteAlbum (String nomAbl){
 		String message = null;
 		DaoAlbum a = new DaoAlbum();
-		boolean deleted = a.delete();//on supprime d'abord toutes les tuples de la table photo where alb = nomAlb
+		boolean deleted = a.delete(nomAbl);//on supprime d'abord toutes les tuples de la table photo where alb = nomAlb
 		if (deleted)
 			message = "L'album "+ nomAbl +"a �t� supprim�";		
 		return message;
