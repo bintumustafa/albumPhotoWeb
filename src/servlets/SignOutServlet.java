@@ -24,8 +24,9 @@ public class SignOutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-    	Loader ld = new Loader();
-		boolean disconnected = ld.unload();
+		IsConnected.setConnectedUser(null);
+    		Loader ld = new Loader();
+		boolean disconnected = ld.unload(IsConnected.getList());
 		response.sendRedirect("signin");
 		System.out.println((String) session.getAttribute("profil"));//pour v�rifier que la session a bien �t� interrompue
 	}
