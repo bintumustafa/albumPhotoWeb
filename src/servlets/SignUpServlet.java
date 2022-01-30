@@ -33,7 +33,9 @@ public class SignUpServlet extends HttpServlet {
 	
 	//on soumet avec la m�thode post
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		UserDao newUsr = new UserDao ();
+		newUsr.add(request.getParameter("login"), request.getParameter("password"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("img"));
+		//cheikh met pour l'ajout valeur par defaut de role c'est simple
 	}
 }
 	
