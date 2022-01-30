@@ -12,9 +12,42 @@ import dao.User;
 @WebServlet("") //index accessible même aux visiteurs simples
 public class IsConnected extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static User connectedUser;
+	private static User connectedUser = null;
 	private static HttpSession currentSession = null;
-       
+	private static List <Photo> photoPub;
+	
+	public User getConnectedUser(){
+		return this.connectedUser;
+	}
+	
+	public void setConnectedUser (User connectedUser){
+		this.connectedUser = connectedUser;
+	}
+	
+	public HttpSession getCurrentSession (){
+		return this.currentSession;
+	}
+   
+	public void setCurrentSession (HttpSession currentSession){
+		this.currentSession = currentSession;
+	}
+	
+	public List <Photo> getList (){
+		List <Photo> pp = new ArrayList <Photo>;
+		PhotoDao p =  new PhotoDao ();
+		for (Photo f : p.getPub){
+			pp.add(f);
+		}
+		if (this.connectedUser != null){
+			for (Photo f : p.getPho(this.connectedUser)){//à adapter
+				pp.add(f);
+			}
+		}	
+		return pp;
+	}
+	
+	//public List <Photo> 
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
