@@ -49,8 +49,8 @@ public class SessionService implements Serializable{
 	    		redirect = "indexSimple.jsp";
 	    	else
 	    		redirect = "indexAdmin.jsp";
-	    	Loader l = new Loader();
-	    	boolean loaded = l.load(this.connectedUser); //pour charger les images de la bd vers le server d'appli
+	    	//Loader l = new Loader();
+	    	//boolean loaded = l.load(this.connectedUser); //pour charger les images de la bd vers le server d'appli
 	    }
     	else {//onn affiche au niveau de la console juste pour faire des tests
     		System.out.println("Login et/ou mot de passe incorrect(s)");
