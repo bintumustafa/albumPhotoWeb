@@ -13,7 +13,7 @@ import dao.User;
 public class IsConnected extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static User connectedUser;
-	private static HttpSession currentSession;
+	private static HttpSession currentSession = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,17 +27,8 @@ public class IsConnected extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
 		request.getRequestDispatcher("indexPublic.jsp").forward(request, response); //selon le nom de jsp que Amina aura mis
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	
-	//on soumet avec la méthode post
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-}
 	
