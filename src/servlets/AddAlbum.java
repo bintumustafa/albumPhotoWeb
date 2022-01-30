@@ -42,7 +42,7 @@ public class AddAlbum extends HttpServlet {
 		// TODO Auto-generated method stub
 		String nomAlb = request.getParameter("nomAlb");
 		AlbumCrud alb = new AlbumCrud();
-    	HttpSession session = request.getSession();
+    		HttpSession session = request.getSession();
 		String nom = (String) session.getAttribute("nomUser");
 		String login = (String) session.getAttribute("loginUser");
 		String password = (String) session.getAttribute("passwordUser");
