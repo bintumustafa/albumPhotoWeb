@@ -52,8 +52,10 @@ public class AuthServlet extends HttpServlet {
 	    	session.setAttribute("passwordUser", password);
 	    	session.setAttribute("nomUser", sess.getConnectedUser().getNom());
 	    	session.setAttribute("profil", sess.getConnectedUser().getProfil());//profil={simple,admin,root}
+		IsConnected.setCurrentSession(session);
+		IsConnected.setConnectedUser(sess.getConnectedUser());
 	    	Loader ld = new Loader();
-	    	boolean loaded = ld.load(sess.getConnectedUser()); //pour charger les images de la bd vers le server d'appli
+	    	boolean loaded = ld.load(IsConnected.getList()); //pour charger les images de la bd vers le server d'appli
 	    	request.getRequestDispatcher(redirect).forward(request, response); //on le redirige vers sa page d'accueil  
 	    	}
 	    	else {//onn affiche au niveau de la console juste pour faire des tests
