@@ -6,6 +6,7 @@ import dao.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Loader{
 	public boolean load(List <Photo> lesPhotosConcernees) throws IOException{
@@ -28,12 +29,11 @@ public class Loader{
 		
 	}
 	
-	public boolean unload(List <Photo> lesPhotosConcernees){
+	public boolean unload(){
 		boolean unloaded = false;
-		File [] f = new File("/Users/aida/Desktop/sbs/apache-tomcat-9.0.55/temp").listFiles();
+		File [] f = new File("C:\\Users\\Administrateur\\Desktop\\envJava\\apache-tomcat-9.0.55\\temp").listFiles();
 		for (File file : f) 
 			file.delete();
-		load(List <Photo> lesPhotosConcernees);
 		return unloaded;
 		
 	}

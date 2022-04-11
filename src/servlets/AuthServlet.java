@@ -1,6 +1,6 @@
 package servlets;
 
-import dao.User; //ï¿½ changer selon le nom du package et de la classe que cheikh aura mis
+import dao.DaoUser; //ï¿½ changer selon le nom du package et de la classe que cheikh aura mis
 //import dao.Authentification; //idem
 import service.Loader; // ï¿½ implï¿½menter dans le package service
 import service.SessionService;
@@ -29,7 +29,7 @@ public class AuthServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("authentification.jsp").forward(request, response); //selon le nom de jsp que Amina aura mis
+		request.getRequestDispatcher(".jsp").forward(request, response); //selon le nom de jsp que Amina aura mis
 		//l'url signin permet d'accï¿½der ï¿½ la page d'authentification
 	}
 
@@ -46,19 +46,25 @@ public class AuthServlet extends HttpServlet {
     	sess.setLogin(login);
     	sess.setPassword(password);
     	String redirect = sess.signIn();
-    	if (sess.getConnectedUser() != null ){
-	    	HttpSession session = request.getSession();
-	    	session.setAttribute("loginUser", login);
-	    	session.setAttribute("passwordUser", password);
-	    	session.setAttribute("nomUser", sess.getConnectedUser().getNom());
-	    	session.setAttribute("profil", sess.getConnectedUser().getProfil());//profil={simple,admin,root}
-		IsConnected.setCurrentSession(session);
-		IsConnected.setConnectedUser(sess.getConnectedUser());
-	    	Loader ld = new Loader();
-	    	boolean loaded = ld.load(IsConnected.getList()); //pour charger les images de la bd vers le server d'appli
-	    	request.getRequestDispatcher(redirect).forward(request, response); //on le redirige vers sa page d'accueil  
-	    	}
-	    	else {//onn affiche au niveau de la console juste pour faire des tests
+    	if (sess.getConnectedUser() != null )
+			try {
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("loginUser", login);
+					session.setAttribute("passwordUser", password);
+					session.setAttribute("nomUser", sess.getConnectedUser().getNom());
+					session.setAttribute("profil", sess.getConnectedUser().getProfil());//profil={simple,admin,root}
+					IsConnected.setCurrentSession(session);
+					IsConnected.setConnectedUser(sess.getConnectedUser());
+					Loader ld = new Loader();
+					ld.load(IsConnected.getListPhoto()); //pour charger les images de la bd vers le server d'appli
+					request.getRequestDispatcher(redirect).forward(request, response); //on le redirige vers sa page d'accueil  
+					}
+			} catch (IOException | ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		else {//onn affiche au niveau de la console juste pour faire des tests
 	    		System.out.println("Login et/ou mot de passe incorrect(s)");
 	    		generateResp(response);
 	    		response.sendRedirect("signin");

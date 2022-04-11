@@ -10,7 +10,7 @@ public class AlbumCrud {
 		DaoAlbum a = new DaoAlbum();
 		boolean created = a.insert(alb, currentLog);//cette m�thode du mod�le doit insert les diff champs de alb et le log du createur comme cl� �trang�re
 		if (created)
-			message = "L'album "+alb.getNom() + "a �t� cr��";
+			message = "L'album "+alb.getNomAlb() + "a �t� cr��";
 		return message;
 	}
 	

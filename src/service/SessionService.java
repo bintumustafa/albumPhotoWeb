@@ -1,7 +1,7 @@
 package service;
 
-import dao.User; //ï¿½ changer selon le nom du package et de la classe que cheikh aura mis
-import dao.UserDao;
+import dao.DaoUser;
+import pojo.User;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -40,7 +40,7 @@ public class SessionService implements Serializable{
 
 	public String signIn() throws IOException{
 		String redirect = null;
-		UserDao auth = new UserDao();//ï¿½ adapter au nom de la classe dans le modï¿½le
+		DaoUser auth = new DaoUser();//ï¿½ adapter au nom de la classe dans le modï¿½le
 	    boolean isConnected = auth.verifyLogin(this.login, this.password);//on suppose que la methode est boolean
 	    if(isConnected){
 	    	this.connectedUser = auth.select(this.login, this.password);//demander à cheikh d'implémenter ca
